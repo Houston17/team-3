@@ -4,7 +4,6 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const OAuthStrategy = require('passport-oauth').OAuthStrategy;
 const OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
 
-
 const User = require('../models/User');
 
 passport.serializeUser(function(user, done) {
@@ -21,7 +20,7 @@ passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_ID,
   clientSecret: process.env.GOOGLE_SECRET,
   callbackURL: '/login/google/return',
-  scope : ['profile', 'email'],
+  scope : ['profile','email'],
   passReqToCallback: true
 }, (req, accessToken, refreshToken, profile, done) => {
   if (req.user) {

@@ -4,12 +4,12 @@ const bcrypt = require('bcrypt-nodejs');
 const userSchema = new mongoose.Schema({
   email: {type: String, unique: true },
   password: String,
-  facebook: String,
+  name: String,
   google: String,
-  points: Number,
+  points: Number, //
   badge: String,
   tokens: Array,
-  isStaff: Boolean,
+  isStaff: {type: Boolean, default: false },
 
   profile: {
     name: String,

@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-const volEventSchema = new mongoose.Schema({
+const eventSchema = new mongoose.Schema({
   time: String,
   location: String,
   volunteers: Array,
   training: Array
 }, {timestamps: true});
 
-const VolEvent = mongoose.model('VolEvent', volEventSchema);
+const Events = mongoose.model('Events', eventSchema);
 
-module.exports = VolEvent;
+module.exports = Events;
