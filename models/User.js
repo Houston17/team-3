@@ -18,6 +18,8 @@ const userSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
+
+
 //password hasher
 userSchema.pre('save', function save(next) {
   const user = this;
