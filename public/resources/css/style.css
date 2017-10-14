@@ -7,7 +7,22 @@ Orange color: #e67e22
 /* ----------------------------------------------- */
 /* BASIC SETUP */
 /* ----------------------------------------------- */
+.map-clear {
+  padding-top: 120px;
+}
 
+.map-clear-up {
+  padding-bottom: 95px;
+}
+.center-map {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+  background: red;
+}
 * {
     margin: 0;
     padding: 0;
