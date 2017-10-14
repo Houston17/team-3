@@ -25,6 +25,10 @@ const app = express();
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Express Add-ons
+app.use(validator());
+app.use(flash());
+
 // OAuth
 app.get('/login/google', passport.authenticate('google'));
 app.get('/login/google/return',
@@ -51,7 +55,6 @@ mongoose.connection.on('error', (err) => {
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.');
   process.exit();
 });
-console.log("things");
 
 // Express Config
 app.use(bodyParser.urlencoded({extended: true}));
@@ -65,9 +68,6 @@ app.use(session({
     clear_interval: 3600
   })
 }));
-
-app.use(validator());
-app.use(flash());
 
 // Static Pages
 app.get('/', staticController.getHome);
