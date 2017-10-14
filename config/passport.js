@@ -7,6 +7,13 @@ const OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
 
 const User = require('../models/User');
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 /**
  * Sign in with Google.
  */

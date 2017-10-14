@@ -31,10 +31,15 @@ const staticController = require('./controller/static');
 // Express Server
 const app = express();
 
+// Passport Setup
+app.use(passport.initialize());
+app.use(passport.session());
+
 // OAuth
 app.get('/login/google', passport.authenticate('google'));
 app.get('/login/google/return',
-    passport.authenticate('google', { failureRedirect: '/login' })
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    function(req, res) { res.redirect(req.session.returnTo || '/'); }
 );
 
 // View Engine
