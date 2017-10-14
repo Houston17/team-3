@@ -8,6 +8,7 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const bodyParser = require('body-parser');
 const http = require('http');
+const handleHelp = require('/_helpers');
 
 // Routes
 const staticController = require('./controller/static');
@@ -17,6 +18,7 @@ const app = express();
 
 // View Engine
 const hbs = exphbs.create({
+  helpers: handleHelp,
   defaultLayout: 'layouts.hbs',
 });
 app.engine('hbs', hbs.engine);
