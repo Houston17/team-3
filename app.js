@@ -9,6 +9,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const http = require('http');
 const passport = require('passport');
+
 // API keys and Passport configuration (user session)
 const passportConfig = require('./config/passport');
 const mongoose = require('mongoose');
@@ -52,17 +53,28 @@ app.set('view engine', 'hbs');
 // Routes for CSS, JS etc.
 app.use(express.static(path.join(__dirname, '/public'), { redirect: false }));
 
+
+//MongoDB connection
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
+mongoose.connection.on('error', (err) => {
+  console.error(err);
+  console.log('%s MongoDB connection error. Please make sure MongoDB is running.');
+  process.exit();
+});
+console.log("things");
+
 // Express Config
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true,
+  resave: false,
+  saveUninitialized: false,
   store: new MongoStore({
-  url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
-  autoReconnect: true,
-  clear_interval: 3600
-})
+    url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
+    autoReconnect: true,
+    clear_interval: 3600
+  })
 }));
 
 app.use(validator());
