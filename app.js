@@ -8,11 +8,9 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const bodyParser = require('body-parser');
 const http = require('http');
-<<<<<<< HEAD
 const handleHelp = require('/_helpers');
-=======
 const passport = require('passport');
->>>>>>> f56d12b8cf70fc9bc52472d960be8265ffdb788e
+
 
 // Routes
 const staticController = require('./controller/static');
