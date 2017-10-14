@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
   email: {type: String, unique: true },
   password: String,
   google: String,
-  points: Number,
+  points: Number, //
   badge: String,
   tokens: Array,
   isStaff: {type: Boolean, default: false },

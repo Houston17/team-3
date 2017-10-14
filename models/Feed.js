@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const feedPostSchema = new mongoose.Schema({
+const feedSchema = new mongoose.Schema({
   title: String,
   date: String,
   fromEvent: mongoose.Schema.ObjectId;
@@ -8,6 +8,6 @@ const feedPostSchema = new mongoose.Schema({
   numUsers: Number
 });
 
-const FeedPost = mongoose.model('FeedPost', feedPostSchema);
+const Feed = mongoose.model('Feed', feedSchema);
 
-module.exports = FeedPost;
+module.exports = Feed;
