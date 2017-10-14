@@ -8,7 +8,6 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const bodyParser = require('body-parser');
 const http = require('http');
-const handleHelp = require('/_helpers');
 const passport = require('passport');
 
 
@@ -20,7 +19,6 @@ const app = express();
 
 // View Engine
 const hbs = exphbs.create({
-  helpers: handleHelp,
   defaultLayout: 'layouts.hbs',
 });
 app.engine('hbs', hbs.engine);
@@ -41,6 +39,7 @@ app.use(flash());
 
 // Static Pages
 app.get('/', staticController.getHome);
+app.get('/login', staticController.logIn);
 
 // Local Machine Testing and HTTP
 http.createServer(app).listen(process.env.PORT || 8000);

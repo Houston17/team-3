@@ -5,3 +5,7 @@ exports.getHome = (req, res) => {
 exports.getTrimmedEvents = (req, res) => {
   res.render();
 };
+
+exports.logIn = (req, res) => {
+  res.render('static/user');
+};
