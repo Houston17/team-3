@@ -18,6 +18,8 @@ const userSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
+
+
 //password hasher
 userSchema.pre('save', function save(next) {
   const user = this;
@@ -37,6 +39,7 @@ userSchema.methods.comparePassword = function comparePassword(candidatePassword,
     cb(err, isMatch);
   });
 };
+
 
 const User = mongoose.model('User', userSchema);
 
