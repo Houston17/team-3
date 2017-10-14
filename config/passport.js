@@ -20,7 +20,7 @@ passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_ID,
   clientSecret: process.env.GOOGLE_SECRET,
   callbackURL: '/login/google/return',
-  scope : ['profile', 'email'],
+  scope : ['profile','email'],
   passReqToCallback: true
 }, (req, accessToken, refreshToken, profile, done) => {
   if (req.user) {
