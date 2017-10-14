@@ -7,6 +7,31 @@ Orange color: #e67e22
 /* ----------------------------------------------- */
 /* BASIC SETUP */
 /* ----------------------------------------------- */
+@media screen
+  and (min-device-width: 1200px)
+  and (max-device-width: 1600px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+    body .circle-center {
+      display: block;
+      margin: auto;
+      width: 10%;
+    }
+
+}
+
+.circle-center {
+  display: block;
+  margin: auto;
+  width: 40%;
+}
+
+.pfp-size {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
 .map-clear {
   padding-top: 120px;
 }
