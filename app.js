@@ -37,6 +37,7 @@ app.get('/login/google/return',
 );
 
 app.use('/bower_components', express.static('bower_components'));
+
 // View Engine
 const hbs = exphbs.create({
   defaultLayout: 'layouts.hbs',
