@@ -9,7 +9,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const http = require('http');
 const passport = require('passport');
-const mongo = require('mongoose');
+const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 
 
@@ -38,7 +38,7 @@ mongoose.connection.on('error', (err) => {
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
   process.exit();
 });
-console.log(mongoose.connection.readyState);
+//console.log(mongoose.connection.readyState);
 
 // Express Config
 app.use(bodyParser.urlencoded({extended: true}));
