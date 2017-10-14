@@ -23,8 +23,7 @@
     "nodemailer": "^4.0.1",
     "nodemon": "^1.11.0",
     "passport": "^0.4.0",
-    "path": "^0.12.7",
-    
+    "path": "^0.12.7"
   },
   "repository": {
     "type": "git",
