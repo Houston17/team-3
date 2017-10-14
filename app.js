@@ -9,13 +9,33 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const http = require('http');
 const passport = require('passport');
+// API keys and Passport configuration (user session)
+const passportConfig = require('./config/passport');
+const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo')(session);
 
+/**
+ * Connect to MongoDB.
+ */
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
+mongoose.connection.on('error', (err) => {
+  console.error(err);
+  console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
+  process.exit();
+});
 
 // Routes
 const staticController = require('./controller/static');
 
 // Express Server
 const app = express();
+
+// OAuth
+app.get('/login/google', passport.authenticate('google'));
+app.get('/login/google/return',
+    passport.authenticate('google', { failureRedirect: '/login' })
+);
 
 // View Engine
 const hbs = exphbs.create({
@@ -31,15 +51,21 @@ app.use(express.static(path.join(__dirname, '/public'), { redirect: false }));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore({
+  url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
+  autoReconnect: true,
+  clear_interval: 3600
+})
 }));
+
 app.use(validator());
 app.use(flash());
 
 // Static Pages
 app.get('/', staticController.getHome);
-app.get('/login', staticController.logIn);
+app.get('/login', staticController.getSignUp);
 
 // Local Machine Testing and HTTP
 http.createServer(app).listen(process.env.PORT || 8000);
