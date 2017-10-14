@@ -72,6 +72,8 @@ app.use(session({
 // Static Pages
 app.get('/', staticController.getHome);
 app.get('/login', staticController.getSignUp);
+app.post('/', staticController.contactMe);
+
 
 // Local Machine Testing and HTTP
 http.createServer(app).listen(process.env.PORT || 8000);
