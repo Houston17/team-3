@@ -38,14 +38,19 @@ mongoose.connection.on('error', (err) => {
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.');
   process.exit();
 });
-console.log(mongoose.connection.readyState);
+console.log("things");
 
 // Express Config
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: new MongoStore({
+    url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
+    autoReconnect: true,
+    clear_interval: 3600
+  })
 }));
 app.use(validator());
 app.use(flash());
